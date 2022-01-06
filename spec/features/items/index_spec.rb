@@ -17,5 +17,10 @@ describe 'Merchant Items Index' do
       expect(page).to have_content(@item2.name)
       expect(page).to_not have_content(@item3.name)
     end
+
+    it 'name is link to show page' do
+      click_link @item1.name
+      expect(current_path).to eq(merchant_item_path(@merchant, @item1))
+    end
   end
 end
