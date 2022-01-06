@@ -14,5 +14,10 @@ describe 'Merchant Item Show' do
       expect(page).to have_content(@item.description)
       expect(page).to have_content(@item.unit_price.fdiv(100))
     end
+
+    it 'link to update item' do
+      click_link 'Update'
+      expect(current_path).to eq(edit_merchant_item_path(@merchant, @item))
+    end
   end
 end
