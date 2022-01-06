@@ -18,9 +18,21 @@ describe 'Merchant Items Index' do
       expect(page).to_not have_content(@item3.name)
     end
 
-    it 'name is link to show page' do
+    it 'name as a link to show page' do
       click_link @item1.name
       expect(current_path).to eq(merchant_item_path(@merchant, @item1))
+    end
+
+    it 'disable and enable button' do
+      click_button "Enable #{@item2.name}"
+      expect(current_path).to eq(merchant_items_path(@merchant))
+      expect(page).to have_no_button("Enable #{@item2.name}")
+      expect(page).to have_button("Disable #{@item2.name}")
+
+      click_button "Disable #{@item2.name}"
+
+      expect(current_path).to eq(merchant_items_path(@merchant))
+      expect(page).to have_no_button("Disable #{@item2.name}")
     end
   end
 end
