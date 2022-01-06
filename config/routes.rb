@@ -1,3 +1,9 @@
 Rails.application.routes.draw do
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+  root to: 'welcome#index'
+
+  resources :merchants, only: :show do
+    resources :dashboard, only: :index
+    resources :items, only: [:index, :show]
+    resources :invoices, only: :index
+  end
 end
