@@ -44,8 +44,11 @@ group :development, :test do
   gem 'orderly'
   gem 'launchy'
   gem 'simplecov'
-  gem 'factory_bot'
+  gem 'factory_bot_rails'
   gem 'shoulda-matchers'
+  gem 'webmock'
+  gem 'faker'
+  gem 'faraday'
 end
 
 group :development do
