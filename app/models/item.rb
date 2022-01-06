@@ -8,4 +8,8 @@ class Item < ApplicationRecord
   validates_presence_of :unit_price
 
   enum status: { disabled: 0, enabled: 1 }
+
+  scope :by_status, lambda { |status|
+    where(status: status)
+  }
 end

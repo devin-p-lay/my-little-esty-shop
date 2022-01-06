@@ -22,10 +22,6 @@ class ItemsController < ApplicationController
 
     private
 
-      def do_item
-        @item = Item.find(params[:id])
-      end
-
       def item_params
         params.require(:item).permit(:name, :description, :unit_price, :status)
       end
