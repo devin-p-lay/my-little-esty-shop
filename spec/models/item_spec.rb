@@ -17,7 +17,7 @@ describe Item do
     end
   end
 
-  describe 'by status' do
+  describe 'class methods' do
     before do
       @merchant = create :merchant, { id: 20 }
       @item1 = create :item, { merchant_id: @merchant.id, status: 'enabled' }
@@ -26,12 +26,19 @@ describe Item do
       @item4 = create :item, { merchant_id: @merchant.id }
     end
 
-    it 'returns items by status disabled' do
-      expect(@merchant.items.by_status('disabled')).to eq([@item2, @item3, @item4])
+    describe '::by_status()' do
+      it 'returns items by status disabled' do
+        expect(@merchant.items.by_status('disabled')).to eq([@item2, @item3, @item4])
+      end
+      it 'returns items by status enabled' do
+        expect(@merchant.items.by_status('enabled')).to eq([@item1])
+      end
     end
 
-    it 'returns items by status enabled' do
-      expect(@merchant.items.by_status('enabled')).to eq([@item1])
+    describe '::next_id' do
+      it 'sequential id number' do
+        expect(Item.next_id).to eq(Item.maximum(:id).next)
+      end
     end
   end
 end

@@ -10,6 +10,15 @@ class ItemsController < ApplicationController
 
   def edit; end
 
+  def new
+    @item = Item.new
+  end
+
+  def create
+    item = Item.new(item_params.merge({ id: Item.next_id, merchant_id: params[:merchant_id] }))
+    redirect_to merchant_items_path(@merchant) if item.save
+  end
+
   def update
     if @item.update(item_params)
       flash[:success] = 'Successfully Updated Item'
