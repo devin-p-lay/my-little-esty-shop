@@ -38,17 +38,17 @@ gem 'bootsnap', '>= 1.1.0', require: false
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
-  gem 'pry'
   gem 'rspec-rails', '~> 4.0.1'
+  gem 'factory_bot_rails'
+  gem 'shoulda-matchers'
+  gem 'simplecov'
   gem 'capybara'
   gem 'orderly'
   gem 'launchy'
-  gem 'simplecov'
-  gem 'factory_bot_rails'
-  gem 'shoulda-matchers'
+  gem 'faraday'
   gem 'webmock'
   gem 'faker'
-  gem 'faraday'
+  gem 'pry'
 end
 
 group :development do

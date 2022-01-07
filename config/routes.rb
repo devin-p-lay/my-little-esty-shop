@@ -5,6 +5,6 @@ Rails.application.routes.draw do
     resources :dashboard, only: [:index]
     resources :items, except: [:destroy]
     resources :item_status, only: [:update]
-    resources :invoices, only: [:index]
+    resources :invoices, only: [:index, :show]
   end
 end

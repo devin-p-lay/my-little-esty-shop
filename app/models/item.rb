@@ -3,9 +3,9 @@ class Item < ApplicationRecord
   has_many :invoice_items
   has_many :invoices, through: :invoice_items
 
-  validates_presence_of :name
-  validates_presence_of :description
-  validates_presence_of :unit_price
+  validates_presence_of :name,
+                        :description,
+                        :unit_price
 
   enum status: { disabled: 0, enabled: 1 }
 
@@ -15,5 +15,5 @@ class Item < ApplicationRecord
 
   def self.next_id
     maximum(:id).next
-  end 
+  end
 end

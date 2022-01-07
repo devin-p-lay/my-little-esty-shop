@@ -7,6 +7,10 @@ class Invoice < ApplicationRecord
 
   enum status: [ :cancelled, :completed, 'in progress' ]
 
-  validates_presence_of :customer_id
-  validates_presence_of :status
-end 
+  validates_presence_of :customer_id,
+                        :status
+
+  def total_revenue
+    invoice_items.sum("unit_price * quantity")
+  end
+end
