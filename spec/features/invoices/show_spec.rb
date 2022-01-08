@@ -30,9 +30,15 @@ describe 'merchant invoice show' do
       expect(page).to_not have_content(@invoice2)
     end
 
+    describe 'total revenue' do
+      it 'revenue of all items on invoice' do
+        expect(page).to have_content("Total Revenue: $1.50")
+      end
+    end
+
     describe 'invoice items' do
       it 'lists all invoice item names, quantity, price and status' do
-        within("#invoice_items") do
+        within "#invoice_item-#{@invoice_item1.id}" do
           expect(page).to have_content(@invoice_item1.item.name)
           expect(page).to have_content(@invoice_item1.quantity)
           expect(page).to have_content(@invoice_item1.unit_price)
@@ -40,11 +46,19 @@ describe 'merchant invoice show' do
           expect(page).to_not have_content(@item3)
         end
       end
-    end
 
-    describe 'total revenue' do
-      it 'revenue of all items on invoice' do
-        expect(page).to have_content("Total Revenue: $1.50")
+      it 'select update invoice item status' do
+        within "#invoice_item-#{@invoice_item2.id}" do
+          expect(find_field('invoice_item_status').value).to eq('pending')
+          select 'packaged'
+          click_button 'Update Invoice'
+        end
+        expect(current_path).to eq(merchant_invoice_path(@merchant, @invoice1))
+
+        within "#invoice_item-#{@invoice_item1.id}" do
+          expect(find_field('invoice_item_status').value).to eq('packaged')
+          expect(page).to have_content('packaged')
+        end
       end
     end
   end

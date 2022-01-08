@@ -10,11 +10,15 @@
 
 <h2>Invoice Items:</h2>
 
-<div id="invoice_items">
-  <% @invoice.invoice_items.each do |invoice_item| %>
+<% @invoice.invoice_items.each do |invoice_item| %>
+  <div id="invoice_item-<%= invoice_item.id %>">
     <u><h3><%= invoice_item.item.name %></h3></u>
-    <p>Quantity: <%= invoice_item.quantity %>
-    <p>Price: <%= number_to_currency(invoice_item.unit_price.fdiv(100)) %>
+    <p>Quantity: <%= invoice_item.quantity %></p>
+    <p>Price: <%= number_to_currency(invoice_item.unit_price.fdiv(100)) %></p>
     <p>Status: <%= invoice_item.status %></p>
-  <% end %>
-</div>
+    <p><%= form_with model: [@merchant, invoice_item], local: true do |f| %>
+      <%= f.select :status, InvoiceItem.statuses.keys, value: "#{@invoice.status}" %>
+      <%= f.submit 'Update Invoice' %>
+    <% end %>
+  </div>
+<% end %>
