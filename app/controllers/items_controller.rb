@@ -21,10 +21,10 @@ class ItemsController < ApplicationController
 
   def update
     if @item.update(item_params)
-      flash[:success] = 'Successfully Updated Item'
+      flash[:message] = 'Successfully Updated Item'
       redirect_to merchant_item_path(@merchant, @item)
     else
-      flash[:alert] = 'Nope'
+      flash[:message] = 'Nope'
       redirect_to edit_merchant_item_path(@merchant, @item)
     end
   end
