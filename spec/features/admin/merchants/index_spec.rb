@@ -14,5 +14,10 @@ describe 'admin merchants index' do
       expect(page).to have_content(@merchant2.name)
       expect(page).to have_content(@merchant3.name)
     end
+
+    it 'name is link to admin merchant show' do
+      click_link "#{@merchant3.name}"
+      expect(current_path).to eq(admin_merchant_path(@merchant3))
+    end 
   end
 end
