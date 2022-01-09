@@ -1,3 +1,8 @@
 class Admin::InvoicesController < ApplicationController
-  def index; end
+  def index
+    @invoices = Invoice.all
+  end
+
+  def show
+  end 
 end
