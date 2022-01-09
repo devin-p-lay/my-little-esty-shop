@@ -10,5 +10,8 @@ Rails.application.routes.draw do
   end
 
   resources :admin, controller: 'admin/dashboard', only: [:index]
-
+  namespace :admin do
+    resources :merchants, only: [:index]
+    resources :invoices, only: [:index]
+  end
 end
