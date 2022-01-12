@@ -1,0 +1,11 @@
+<h1>Welcome to My Little Esty Shop</h1>
+
+<%= link_to "Admin Dashboard", '/admin/dashboard' %>
+
+<h3>Merchant Dashboards:</h3>
+
+<% @merchants.each do |merchant| %>
+  <p><%= link_to merchant.name, merchant_dashboard_index_path(merchant) %></p>
+<% end %>
+
+
