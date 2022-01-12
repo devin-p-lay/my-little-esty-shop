@@ -1,11 +1,30 @@
 <h1>Invoice #<%= @invoice.id %></h1>
 
 <div id="invoice-attr">
-  <p>Status:
+
+  <section id="status-update">
+    <%= form_with model: [:admin, @invoice] do |f| %>
+      <%= f.select :status, Invoice.statuses.keys, selected: "#{@invoice.status}" %>
+      <%= f.submit 'Update Invoice' %>
+    <% end %>
+  </section>
+
+  <p>Invoice Status:
     <%= @invoice.status %></p>
   <p>Created on:
     <%= @invoice.created_at.strftime('%A, %B %d, %Y') %></p>
   <p>Customer:
     <%= @invoice.customer.full_name %></p>
+  <p>Total Revenue:
+    <%= number_to_currency(@invoice.total_revenue.fdiv(100)) %></p>
 </div>
 
+<hr>
+
+<h3>Invoice Items:</h3>
+<% @invoice.invoice_items.each do |ii| %>
+  <u><p><%= ii.item.name %></p></u>
+  <p>Quantity: <%= ii.quantity %></p>
+  <p>Price: <%= number_to_currency(ii.unit_price.fdiv(100)) %></p>
+  <p>Status: <%= ii.status %></p>
+<% end %>
