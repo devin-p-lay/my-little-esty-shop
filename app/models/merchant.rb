@@ -6,4 +6,8 @@ class Merchant < ApplicationRecord
   has_many :transactions, through: :invoices
 
   validates_presence_of :name
-end 
+
+  enum status: { enabled: 0, disabled: 1 }
+
+  scope :by_status, lambda  { |status| where(status: status) }
+end
