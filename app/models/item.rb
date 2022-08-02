@@ -14,6 +14,10 @@ class Item < ApplicationRecord
   }
 
   def self.next_id
-    maximum(:id).next
+    if Item.count == 0
+      1
+    else
+      maximum(:id).next
+    end
   end
 end

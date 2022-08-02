@@ -15,6 +15,20 @@ describe 'admin merchants index' do
       expect(page).to have_content(@merchant3.name)
     end
 
+    it 'merchants sectioned by status' do
+      within '#enabled' do
+        expect(page).to have_content(@merchant1.name)
+        expect(page).to have_content(@merchant2.name)
+        expect(page).to have_content(@merchant3.name)
+      end
+
+      within '#disabled' do
+        expect(page).to_not have_content(@merchant1.name)
+        expect(page).to_not have_content(@merchant2.name)
+        expect(page).to_not have_content(@merchant3.name)
+      end
+    end
+
     it 'name is link to admin merchant show' do
       click_link "#{@merchant3.name}"
       expect(current_path).to eq(admin_merchant_path(@merchant3))

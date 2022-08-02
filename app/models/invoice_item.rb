@@ -9,4 +9,8 @@ class InvoiceItem < ApplicationRecord
                         :quantity,
                         :unit_price,
                         :status
+
+  def self.incomplete_invoices
+    where.not(status: '2').distinct.pluck(:invoice_id)
+  end
 end

@@ -2,3 +2,10 @@
 
 <h3><%= link_to 'Admin - Merchants Index', admin_merchants_path %></h3>
 <h3><%= link_to 'Admin - Invoices Index', admin_invoices_path %></h3>
+
+<div id="incomplete_invoices">
+  <h4>Incomplete Invoices:</h4>
+  <% @invoice_items.each do |invoice| %>
+    <p><%= link_to "#{invoice}", "admin/invoices/#{invoice}" %></p>
+  <% end %>
+</div>
