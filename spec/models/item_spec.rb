@@ -39,6 +39,14 @@ describe Item do
       it 'sequential id number' do
         expect(Item.next_id).to eq(Item.maximum(:id).next)
       end
+
+      it 'first item' do
+        Item.destroy_all
+        @test_merchant = create :merchant
+        @first_item = create :item, { merchant_id: @test_merchant.id, id: Item.next_id }
+
+        expect(@test_merchant.items.last.id).to eq(1)
+      end
     end
   end
 end
