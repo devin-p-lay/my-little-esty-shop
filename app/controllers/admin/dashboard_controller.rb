@@ -1,3 +1,5 @@
 class Admin::DashboardController < ApplicationController
-  def index; end
-end 
+  def index
+    @invoice_items = InvoiceItem.incomplete_invoices
+  end
+end
