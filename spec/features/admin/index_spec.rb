@@ -50,6 +50,12 @@ describe 'admin index' do
           expect(current_path).to eq("/admin/invoices/#{@invoice1.id}")
         end
       end
+
+      it 'display the date the invoice was created' do 
+      end 
+
+      it 'invoices listed in order from oldest to newest' do 
+      end 
     end
   end
 end
