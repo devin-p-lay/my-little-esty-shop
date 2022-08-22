@@ -3,9 +3,13 @@
 <h3><%= link_to 'Admin - Merchants Index', admin_merchants_path %></h3>
 <h3><%= link_to 'Admin - Invoices Index', admin_invoices_path %></h3>
 
+<br>
+
 <div id="incomplete_invoices">
-  <h4>Incomplete Invoices:</h4>
-  <% @invoice_items.each do |invoice| %>
-    <p><%= link_to "#{invoice}", "admin/invoices/#{invoice}" %></p>
+  <h2>Incomplete Invoices:</h2>
+  <% @invoices.each do |invoice| %>
+    <p><%= link_to "Invoice #{invoice.id}", "/admin/invoices/#{invoice.id}" %></p>
+    <p>Created: <%= invoice.created_at.strftime("%A, %B %d, %Y") %></p>
+    <br>
   <% end %>
 </div>
