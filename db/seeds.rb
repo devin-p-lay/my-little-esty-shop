@@ -17,27 +17,15 @@ Merchant.destroy_all
 
 @customer1 = Customer.create(first_name: "Barry", last_name: "Burley")
 @invoice1 = @customer1.invoices.create(status: 1)
+@invoice_item1 = InvoiceItem.create(item_id: @item1.id, invoice_id: @invoice1.id)
+@transaction1 = Transaction.create(result: 0, invoice_id: @invoice1.id)
 
 @customer2 = Customer.create(first_name: "Curtis", last_name: "Curley")
 @invoice2 = @customer2.invoices.create(status: 1)
-
-@invoice_item1 = InvoiceItem.create(item_id: @item1.id, invoice_id: @invoice1.id)
 @invoice_item2 = InvoiceItem.create(item_id: @item2.id, invoice_id: @invoice2.id)
-@transaction1 = Transaction.create(result: 0, invoice_id: @invoice1.id)
 @transaction2 = Transaction.create(result: 0, invoice_id: @invoice2.id)
 
-# @merchant1 = create :merchant
-# @item1 = create :item, { merchant_id: @merchant1.id }
-# @item2 = create :item, { merchant_id: @merchant1.id }
-
-# @customer1 = create :customer
-# @invoice1 = create :invoice, { customer_id: @customer1.id, status: 1 }
-
-# @customer2 = create :customer
-# @invoice2 = create :invoice, { customer_id: @customer2.id, status: 1 }
-
-# @invoice_item1 = create :invoice_item, { invoice_id: @invoice1.id, item_id: @item1.id, status: 1 }
-# @invoice_item2 = create :invoice_item, { invoice_id: @invoice2.id, item_id: @item2.id, status: 1 }
-
-# @transaction1 = create :transaction, { result: 0, invoice_id: @invoice1.id }
-# @transaction2 = create :transaction, { result: 0, invoice_id: @invoice2.id }
+@customer3 = Customer.create(first_name: "Daisy", last_name: "Durley")
+@invoice3 = @customer3.invoices.create(status: 0)
+@invoice_item3 = InvoiceItem.create(item_id: @item1.id, invoice_id: @invoice3.id, status: 1)
+@transaction3 = Transaction.create(result: 0, invoice_id: @invoice3.id)
